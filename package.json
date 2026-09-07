@@ -1,0 +1,12 @@
+{
+  "name": "duolingo-app-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Duolingo Full-Stack Application",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend start",
+    "backend": "cd backend && python run.py"
+  }
+}

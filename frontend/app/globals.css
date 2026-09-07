@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --duo-green: #58cc02;
+    --duo-green-dark: #46a302;
+    --duo-blue: #1cb0f6;
+    --duo-blue-dark: #1899d6;
+    --duo-red: #ff4b4b;
+    --duo-red-dark: #ea2b2b;
+    --duo-orange: #ff9600;
+    --duo-orange-dark: #e08500;
+    --duo-yellow: #ffc800;
+    --duo-yellow-dark: #e5b400;
+    --duo-gray-border: #e5e5e5;
+    --duo-gray-bg: #f7f7f7;
+    --duo-gray-text: #777777;
+    --duo-dark-text: #4b4b4b;
+    --path-offset-scale: 0.5;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --path-offset-scale: 1;
+    }
+  }
+}
+
+/* 3D Button tactile effect */
+.btn-duo-green {
+  background-color: #58cc02;
+  border-bottom: 4px solid #46a302;
+  transition: all 0.1s ease;
+}
+.btn-duo-green:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+.btn-duo-green:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  margin-bottom: 2px;
+}
+
+.btn-duo-blue {
+  background-color: #1cb0f6;
+  border-bottom: 4px solid #1899d6;
+  transition: all 0.1s ease;
+}
+.btn-duo-blue:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+.btn-duo-blue:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  margin-bottom: 2px;
+}
+
+.btn-duo-gray {
+  background-color: #ffffff;
+  border: 2px solid #e5e5e5;
+  border-bottom: 4px solid #e5e5e5;
+  transition: all 0.1s ease;
+}
+.btn-duo-gray:hover:not(:disabled) {
+  background-color: #f7f7f7;
+}
+.btn-duo-gray:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  margin-bottom: 2px;
+}
+
+.btn-duo-red {
+  background-color: #ff4b4b;
+  border-bottom: 4px solid #ea2b2b;
+  transition: all 0.1s ease;
+}
+.btn-duo-red:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+.btn-duo-red:active:not(:disabled) {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  margin-bottom: 2px;
+}
+
+/* Pulse animation for active lesson node */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(88, 204, 2, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 16px rgba(88, 204, 2, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(88, 204, 2, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* ── Shake animation on incorrect answer ── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+  20%, 40%, 60%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ── XP pop-in counter animation ── */
+@keyframes xp-pop {
+  0% { transform: scale(0.7) translateY(8px); opacity: 0; }
+  60% { transform: scale(1.15) translateY(-4px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.animate-xp-pop {
+  animation: xp-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* ── Slide up from bottom ── */
+@keyframes slide-up {
+  0% { transform: translateY(32px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s ease-out both;
+}
+
+/* ── Confetti burst (scale-in fade) ── */
+@keyframes confetti-burst {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.animate-confetti-burst {
+  animation: confetti-burst 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* ── Fade-in zoom ── */
+@keyframes fade-in-zoom {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-zoom {
+  animation: fade-in-zoom 0.25s ease-out both;
+}
+
+/* ── Zoom-in for modals ── */
+@keyframes zoom-in-95 {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.zoom-in-95 {
+  animation: zoom-in-95 0.2s ease-out;
+}
+
+/* ── Fade-in ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* ── Heart beat ── */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.2); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.3s ease-in-out;
+}
+
+/* ── Bounce-in ── */
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ── Progress ring SVG base ── */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.8s ease-in-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
