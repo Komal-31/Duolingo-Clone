@@ -9,14 +9,20 @@ from app.models.gamification import LeaderboardEntry, Achievement, UserAchieveme
 
 
 def seed_database():
-    """Drop and recreate all tables, then seed English course curriculum, exercises, users, and gamification."""
-    print("Dropping and recreating all SQLite database tables...")
-    Base.metadata.drop_all(bind=engine)
+    print("Creating SQLite database tables...")
     Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
 
     try:
+        # Don't seed if users already exist
+        existing_user = db.query(User).first()
+
+        if existing_user:
+            print("Database already contains data. Skipping seed.")
+            return
+
+        print("Database is empty. Seeding data...")
         print("Seeding Course: English for Beginners...")
         course = Course(
             title="English for Beginners",
