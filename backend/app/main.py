@@ -1,3 +1,5 @@
+from app.database import engine
+from app.database import Base
 import os
 import logging
 from fastapi import FastAPI, Request, status
@@ -7,6 +9,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.routers import courses, lessons, users, leaderboard, achievements
+
+
+# Import all models so SQLAlchemy knows about every table
+from app.models.user import User
+from app.models.course import Course, Unit, Skill
+from app.models.lesson import Lesson, Exercise
+from app.models.progress import UserProgress
+from app.models.stats import UserStats, DailyActivity
+from app.models.gamification import LeaderboardEntry, Achievement, UserAchievement
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -21,6 +33,12 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+@app.on_event("startup")
+def create_database_tables():
+    logger.info("Creating database tables if they do not exist...")
+    Base.metadata.create_all(bind=engine)
+    logger.info("Database tables are ready.")
 
 # Configure CORS via environment variable (default: http://localhost:3000, 127.0.0.1, [::1])
 cors_origins_env = os.getenv(
