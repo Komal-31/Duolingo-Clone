@@ -6,8 +6,8 @@ __pycache__/
 *$py.class
 *.sqlite
 *.db
-backend/*.db
-backend/*.sqlite
+# backend/*.db
+# backend/*.sqlite
 
 # Next.js / Node
 node_modules/
